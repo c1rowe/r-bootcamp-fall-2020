@@ -1,0 +1,15 @@
+---
+title: "Bootcamp1"
+author: "Chase Rowe"
+date: "8/10/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+setwd("C:/Users/Me/Documents/Class/Summer Bridge/r-bootcamp-fall-2020/modules")
+getwd()
+```
