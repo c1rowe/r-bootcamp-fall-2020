@@ -66,3 +66,38 @@ plot(gap$pop ~ gap$gdpPercap)
 dev.off()
 ```
 
+# Part 3
+
+```{r}
+row5 <- gap[5,]
+
+lastrow <- tail(gap,1)
+
+bigGdp <- sum(gap$gdpPercap > 50000)
+
+gap2 <- gap
+gap2$gdpPercap[gap2$gdpPercap > 50000] <- NA
+
+print(paste(gap2[1,]['country'], gap2[1,]['year'], sep="-"))
+```
+
+```{r}
+print_dim <- function(df) {
+  rows <- dim(df)[1]
+  result <- paste("There are", rows, "rows in the dataset.")
+  return(result)
+}
+result <- print_dim(gap)
+
+tail(gap,1)
+
+vec <- gap$lifeExp > 75 & gap$gdpPercap < 10000
+sum(vec)/dim(gap)[1]
+
+# vec gives bool for above logic on rows
+gap[vec,]
+
+paste("Gap is of type", class(attributes(gap)), sep=" ")
+# note: sep=" " is default so above arg is redundant
+```
+
