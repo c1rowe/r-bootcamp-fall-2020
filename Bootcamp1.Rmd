@@ -9,7 +9,60 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Part 1
+
 ```{r}
-setwd("C:/Users/Me/Documents/Class/Summer Bridge/r-bootcamp-fall-2020/modules")
 getwd()
+gap = read.csv('data/gapminder-FiveYearData.csv',
+               stringsAsFactors=F)
+head(gap)
 ```
+
+```{r}
+x <- mean(gap$lifeExp)
+
+print(round(x, digits=2))
+print(signif(x, digits=2))
+
+gap$gdpPcEuro <- gap$gdpPercap/1.17
+
+gap$totalGdp <- gap$gdpPercap * gap$pop
+trill <- gap$totalGdp > 1e12
+```
+
+```{r}
+wealthiest <- gap$gdpPercap[trill]
+
+gap$gdpPercap[gap$gdpPercap > 40000] = 40000
+plot(gap$lifeExp, gap$gdpPercap)
+```
+
+```{r}
+hist(gap$lifeExp[gap$year == 2007], breaks=35)
+```
+
+```{r}
+life = gap$lifeExp[gap$year == 2007]
+gdp = gap$gdpPercap[gap$year == 2007]
+plot(gdp ~ life)
+```
+
+# Part 2
+
+```{r}
+ls()
+```
+
+```{r}
+setwd("C:/Users/Me/Desktop")
+write.csv(cpds, file='data', quote=F, row.names=F)
+```
+
+```{r}
+pdf("C:/Users/Me/Desktop/gapplot_small.pdf", width=10, height=10)
+plot(gap$pop ~ gap$gdpPercap)
+pdf("C:/Users/Me/Desktop/gapplot_big.pdf", width=1000, height=1000)
+plot(gap$pop ~ gap$gdpPercap)
+dev.off()
+```
+
