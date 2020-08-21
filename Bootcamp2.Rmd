@@ -1,0 +1,71 @@
+---
+title: "Bootcamp2"
+author: "Chase Rowe"
+date: "8/11/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Mod 4
+
+```{r}
+getwd()
+gap = read.csv("data/gapminder-FiveYearData.csv")
+head(gap)
+```
+
+```{r}
+gap$countryyear <- paste(gap$country, gap$year, sep="-")
+print(typeof(gap$countryyear))
+head(gap)
+
+table(gap$continent)/12
+
+vals = rpois(100, lam=5)
+print(mean(vals))
+
+print(qchisq(p=0.95, df=1))
+
+print(pnorm(5, lower=F))
+print(pt(5,df=1,lower=F))
+```
+
+```{r}
+sum(sapply(gap,FUN=is.na))
+
+gap$gpdPercap_binned = cut(gap$gdpPercap, breaks=5)
+table(gap$gpdPercap_binned)
+
+boxplot(gap$lifeExp ~ gap$gpdPercap_binned)
+```
+
+# Mod 5
+
+```{r, include=FALSE}
+# Note:
+sapply(1:6, function(n) rnorm(n))
+#       ^ *arg*      ^ function on *arg*
+```
+
+```{r}
+abs <- function(vec) {
+  result <- vec*(vec > 0)
+  return(result)
+}
+vec <- c(-1, 6, -4, -2, 8)
+abs(vec)
+
+years <- unique(gap$year)
+idx <- 1:length(years)
+out <- lapply(idx, function(idx) lm(lifeExp ~ log(gdpPercap), 
+                      data=subset(gap, gap$year == years[idx])))
+
+vec = vector(length=500)
+for (i in 1:500) {
+  
+}
+```
+
